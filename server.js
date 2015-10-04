@@ -4,14 +4,32 @@ app.use(express.static(__dirname + "/app/"));
 var port = process.env.PORT || 3000;
 
 function Adjective() {
-  this.funny = true;
-  this.sad = true;
-  this.creepy = true;
-  this.friendly = true;
-  this.hesitant = true;
+  this.angry = true;
+  this.plain = true;
+  this.maniacal = true;
+  this.joyous = true;
+  this.lazy = true;
+}
+
+function Verb() {
+  this.chafing = true;
+  this.eating = true;
+  this.frowning = true;
+  this.hanging = true;
+  this.knowing = true;
+}
+
+function Noun() {
+  this.growlers = true;
+  this.decanters = true;
+  this.asparagus = true;
+  this.popcorn = true;
+  this.bacon = true;
 }
 
 var adjective = new Adjective();
+var verb = new Verb();
+var noun = new Noun();
 
 function getRandomWord (object) {
   var propArray = Object.keys(object);
@@ -27,6 +45,13 @@ app.get("/adjective", function (req, res) {
   res.json(getRandomWord(adjective));
 });
 
+app.get("/verb", function (req, res) {
+  res.json(getRandomWord(verb));
+});
+
+app.get("/noun", function (req, res) {
+  res.json(getRandomWord(noun));
+});
 
 app.listen(port, function() {
   console.log('server started on port ' + port);
