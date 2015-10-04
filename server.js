@@ -1,6 +1,6 @@
 var express = require("express");
 var app = express();
-
+app.use(express.static(__dirname + "/app/"));
 var port = process.env.PORT || 3000;
 
 function Adjective() {
@@ -20,12 +20,13 @@ function getRandomWord (object) {
 }
 
 app.get("/", function (req, res) {
-  res.send("hello universe!");
+  res.sendFile('index.html');
 });
 
 app.get("/adjective", function (req, res) {
   res.json(getRandomWord(adjective));
 });
+
 
 app.listen(port, function() {
   console.log('server started on port ' + port);
